@@ -32,7 +32,7 @@ namespace MIT
             .AddSqlServer()
             .AddDbContext<MITContext>(options =>
             {
-                options.UseSqlServer(Configuration["Data:ConnectionString"]);
+                options.UseSqlServer(Configuration["Data:CS"]);
             });
 
             // Add framework services.
