@@ -7,6 +7,8 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Data.Entity;
+using MIT.Models;
 
 namespace MIT
 {
@@ -26,8 +28,16 @@ namespace MIT
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFramework()
+            .AddSqlServer()
+            .AddDbContext<MITContext>(options =>
+            {
+                options.UseSqlServer(Configuration["Data:ConnectionString"]);
+            });
+
             // Add framework services.
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
