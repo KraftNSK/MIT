@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MIT.Models
 {
+    /// <summary>
+    /// Категория обращения
+    /// </summary>
     public class Category
     {
         public int id { get; set; }

@@ -37,7 +37,11 @@ namespace MIT.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("Name");
+
+                    b.Property<int?>("Parentid");
 
                     b.HasKey("id");
                 });
@@ -198,8 +202,7 @@ namespace MIT.Migrations
 
             modelBuilder.Entity("MIT.Models.User", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("id");
 
                     b.Property<byte>("AccessLevel");
 
@@ -223,8 +226,6 @@ namespace MIT.Migrations
 
                     b.Property<int?>("Requestid1");
 
-                    b.Property<int?>("UserDepartametid");
-
                     b.Property<int?>("UserOrganizationid");
 
                     b.Property<int?>("UserPositionid");
@@ -237,6 +238,13 @@ namespace MIT.Migrations
             modelBuilder.Entity("MIT.Models.Category", b =>
                 {
                     b.HasOne("MIT.Models.Category")
+                        .WithMany()
+                        .HasForeignKey("Parentid");
+                });
+
+            modelBuilder.Entity("MIT.Models.Departament", b =>
+                {
+                    b.HasOne("MIT.Models.Departament")
                         .WithMany()
                         .HasForeignKey("Parentid");
                 });
@@ -315,10 +323,6 @@ namespace MIT.Migrations
                         .WithMany()
                         .HasForeignKey("Requestid1");
 
-                    b.HasOne("MIT.Models.Departament")
-                        .WithMany()
-                        .HasForeignKey("UserDepartametid");
-
                     b.HasOne("MIT.Models.Organization")
                         .WithMany()
                         .HasForeignKey("UserOrganizationid");
@@ -326,6 +330,10 @@ namespace MIT.Migrations
                     b.HasOne("MIT.Models.Position")
                         .WithMany()
                         .HasForeignKey("UserPositionid");
+
+                    b.HasOne("MIT.Models.Departament")
+                        .WithOne()
+                        .HasForeignKey("MIT.Models.User", "id");
                 });
         }
     }

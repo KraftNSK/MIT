@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MIT.Models
 {
+    /// <summary>
+    /// Услуга/сервис
+    /// </summary>
     public class Service
     {
         public int id { get; set; }
@@ -16,11 +19,17 @@ namespace MIT.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
-
+        /// <summary>
+        /// Минимальное время реакции
+        /// </summary>
         public int SLA_MinReactionTimeMinutes { get; set; }
-
+        /// <summary>
+        /// Время за которое сервис должен быть восстановлен
+        /// </summary>
         public int SLA_TimeDone { get; set; }
-
+        /// <summary>
+        /// Ответственный за сервис по умолчанию
+        /// </summary>
         public User Responsible { get; set; }
 
     }

@@ -28,17 +28,22 @@ namespace MIT.Models
         /// Срок выполнения
         /// </summary>
         public DateTime Deadline { get; set; }
-
+            
+        /// <summary>
+        /// Способ подачи
+        /// </summary>
         public MethodFeed Method_Feed { get; set; }
         /// <summary>
         /// Тип обращения (инцидент, запрос информации и т.д.)
         /// </summary>
         public RequestType Request_Type { get; set; }
         /// <summary>
-        /// СРочость/приоритет
+        /// Срочость/приоритет
         /// </summary>
         public Priority Urgency { get; set; }
-
+        /// <summary>
+        /// Состояние обращения
+        /// </summary>
         public RequestState State { get; set; }
         /// <summary>
         /// Тема обращения

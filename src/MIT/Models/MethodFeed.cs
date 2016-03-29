@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MIT.Models
 {
+    /// <summary>
+    /// Способ подачи обращения
+    /// </summary>
     public class MethodFeed
     {
         public int id { get; set; }

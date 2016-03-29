@@ -36,11 +36,19 @@ namespace MIT.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Parentid = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departament", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Departament_Departament_Parentid",
+                        column: x => x.Parentid,
+                        principalTable: "Departament",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
             migrationBuilder.CreateTable(
                 name: "MethodFeed",
@@ -211,8 +219,7 @@ namespace MIT.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    id = table.Column<int>(nullable: false),
                     AccessLevel = table.Column<byte>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
@@ -224,7 +231,6 @@ namespace MIT.Migrations
                     PhoneNumbers = table.Column<string>(nullable: true),
                     Requestid = table.Column<int>(nullable: true),
                     Requestid1 = table.Column<int>(nullable: true),
-                    UserDepartametid = table.Column<int>(nullable: true),
                     UserOrganizationid = table.Column<int>(nullable: true),
                     UserPositionid = table.Column<int>(nullable: true),
                     isVIP = table.Column<bool>(nullable: false)
@@ -245,12 +251,6 @@ namespace MIT.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_User_Departament_UserDepartametid",
-                        column: x => x.UserDepartametid,
-                        principalTable: "Departament",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_User_Organization_UserOrganizationid",
                         column: x => x.UserOrganizationid,
                         principalTable: "Organization",
@@ -262,6 +262,12 @@ namespace MIT.Migrations
                         principalTable: "Position",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_User_Departament_id",
+                        column: x => x.id,
+                        principalTable: "Departament",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
                 name: "Service",
@@ -332,7 +338,7 @@ namespace MIT.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(name: "FK_User_Departament_UserDepartametid", table: "User");
+            migrationBuilder.DropForeignKey(name: "FK_User_Departament_id", table: "User");
             migrationBuilder.DropForeignKey(name: "FK_Request_MethodFeed_Method_Feedid", table: "Request");
             migrationBuilder.DropForeignKey(name: "FK_User_Organization_UserOrganizationid", table: "User");
             migrationBuilder.DropForeignKey(name: "FK_User_Position_UserPositionid", table: "User");

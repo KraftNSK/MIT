@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MIT.Models
 {
+    /// <summary>
+    /// Статус обращения
+    /// </summary>
     public class RequestState
     {
         public int id { get; set; }

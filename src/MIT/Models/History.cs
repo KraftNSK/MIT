@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MIT.Models
 {
+    /// <summary>
+    /// История работы над обращением
+    /// </summary>
     public class History
     {
         public int id { get; set; }
