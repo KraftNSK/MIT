@@ -20,5 +20,7 @@ namespace MIT.Models
 
         public bool isGroup { get; set; }
 
+        public bool isDeleted { get; set; }
+
     }
 }

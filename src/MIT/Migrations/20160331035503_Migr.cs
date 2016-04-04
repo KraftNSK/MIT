@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace MIT.Migrations
 {
-    public partial class MIT_Migr : Migration
+    public partial class Migr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,7 @@ namespace MIT.Migrations
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Parentid = table.Column<int>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false),
                     isGroup = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -38,7 +39,9 @@ namespace MIT.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Parentid = table.Column<int>(nullable: true)
+                    Parentid = table.Column<int>(nullable: true),
+                    idUserManager = table.Column<int>(nullable: false),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,7 +60,8 @@ namespace MIT.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
-                    Method = table.Column<string>(nullable: true)
+                    Method = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +73,8 @@ namespace MIT.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,7 +86,8 @@ namespace MIT.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,7 +101,8 @@ namespace MIT.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Ratio = table.Column<int>(nullable: false)
+                    Ratio = table.Column<int>(nullable: false),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,7 +115,8 @@ namespace MIT.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Description = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true)
+                    Status = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,7 +128,8 @@ namespace MIT.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(nullable: true)
+                    Type = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,7 +143,8 @@ namespace MIT.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Path = table.Column<string>(nullable: true),
                     Requestid = table.Column<int>(nullable: true),
-                    Type = table.Column<string>(nullable: true)
+                    Type = table.Column<string>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,7 +160,8 @@ namespace MIT.Migrations
                     Description = table.Column<string>(nullable: true),
                     Responsibleid = table.Column<int>(nullable: true),
                     Statusid = table.Column<int>(nullable: true),
-                    UserChangeid = table.Column<int>(nullable: true)
+                    UserChangeid = table.Column<int>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -179,7 +190,8 @@ namespace MIT.Migrations
                     Responsibleid = table.Column<int>(nullable: true),
                     Stateid = table.Column<int>(nullable: true),
                     Topic = table.Column<string>(nullable: true),
-                    Urgencyid = table.Column<int>(nullable: true)
+                    Urgencyid = table.Column<int>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -219,7 +231,8 @@ namespace MIT.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AccessLevel = table.Column<byte>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
@@ -231,8 +244,10 @@ namespace MIT.Migrations
                     PhoneNumbers = table.Column<string>(nullable: true),
                     Requestid = table.Column<int>(nullable: true),
                     Requestid1 = table.Column<int>(nullable: true),
+                    UserDepartametid = table.Column<int>(nullable: true),
                     UserOrganizationid = table.Column<int>(nullable: true),
                     UserPositionid = table.Column<int>(nullable: true),
+                    isDeleted = table.Column<bool>(nullable: false),
                     isVIP = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -251,6 +266,12 @@ namespace MIT.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_User_Departament_UserDepartametid",
+                        column: x => x.UserDepartametid,
+                        principalTable: "Departament",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_User_Organization_UserOrganizationid",
                         column: x => x.UserOrganizationid,
                         principalTable: "Organization",
@@ -262,12 +283,6 @@ namespace MIT.Migrations
                         principalTable: "Position",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_User_Departament_id",
-                        column: x => x.id,
-                        principalTable: "Departament",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
                 name: "Service",
@@ -281,6 +296,7 @@ namespace MIT.Migrations
                     Responsibleid = table.Column<int>(nullable: true),
                     SLA_MinReactionTimeMinutes = table.Column<int>(nullable: false),
                     SLA_TimeDone = table.Column<int>(nullable: false),
+                    isDeleted = table.Column<bool>(nullable: false),
                     isGroup = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -338,7 +354,7 @@ namespace MIT.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(name: "FK_User_Departament_id", table: "User");
+            migrationBuilder.DropForeignKey(name: "FK_User_Departament_UserDepartametid", table: "User");
             migrationBuilder.DropForeignKey(name: "FK_Request_MethodFeed_Method_Feedid", table: "Request");
             migrationBuilder.DropForeignKey(name: "FK_User_Organization_UserOrganizationid", table: "User");
             migrationBuilder.DropForeignKey(name: "FK_User_Position_UserPositionid", table: "User");

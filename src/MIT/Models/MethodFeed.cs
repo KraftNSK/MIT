@@ -15,5 +15,6 @@ namespace MIT.Models
         public string Method { get; set; }
 
         public string Description { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

@@ -3,6 +3,9 @@
   "version": 2,
   "targets": {
     "DNX,Version=v4.5.1": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -1808,6 +1811,9 @@
       }
     },
     "DNXCore,Version=v5.0": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -4277,6 +4283,9 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x86": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -6085,6 +6094,9 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x64": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -7893,6 +7905,9 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x86": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -10792,6 +10807,9 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x64": {
+      "AngularJS.Core/1.5.3": {
+        "type": "package"
+      },
       "EntityFramework.Commands/7.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -13692,6 +13710,19 @@
     }
   },
   "libraries": {
+    "AngularJS.Core/1.5.3": {
+      "type": "package",
+      "sha512": "3gMtPvwqRLh+TcXPEpc8xMWvlzJzLfiaGeEFFfcsNq/uV/6394hoJ939yKjVgKktbRqrnuLm+lY9IHK3yQfmPg==",
+      "files": [
+        "AngularJS.Core.1.5.3.nupkg",
+        "AngularJS.Core.1.5.3.nupkg.sha512",
+        "AngularJS.Core.nuspec",
+        "content/Scripts/angular.js",
+        "content/Scripts/angular.min.js",
+        "content/Scripts/angular.min.js.map",
+        "content/Scripts/angular-mocks.js"
+      ]
+    },
     "EntityFramework.Commands/7.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
@@ -19100,6 +19131,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "AngularJS.Core >= 1.5.3",
       "EntityFramework.Commands >= 7.0.0-rc1-final",
       "EntityFramework.MicrosoftSqlServer >= 7.0.0-rc1-final",
       "Microsoft.AspNet.Diagnostics >= 1.0.0-rc1-final",

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MIT.Models
 {
@@ -18,8 +19,10 @@ namespace MIT.Models
         /// <summary>
         /// Руководитель подразделения
         /// </summary>
-        [Required]
-        public User Manager { get; set; }
+        public int idUserManager { get; set; }
+
         public string Description { get; set; }
+
+        public bool isDeleted { get; set; }
     }
 }

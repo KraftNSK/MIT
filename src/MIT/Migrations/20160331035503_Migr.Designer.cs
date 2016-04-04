@@ -8,8 +8,8 @@ using MIT.Models;
 namespace MIT.Migrations
 {
     [DbContext(typeof(MITContext))]
-    [Migration("20160329102409_MIT_Migr")]
-    partial class MIT_Migr
+    [Migration("20160331035503_Migr")]
+    partial class Migr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace MIT.Migrations
 
                     b.Property<int?>("Parentid");
 
+                    b.Property<bool>("isDeleted");
+
                     b.Property<bool>("isGroup");
 
                     b.HasKey("id");
@@ -44,6 +46,10 @@ namespace MIT.Migrations
 
                     b.Property<int?>("Parentid");
 
+                    b.Property<int>("idUserManager");
+
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -57,6 +63,8 @@ namespace MIT.Migrations
                     b.Property<int?>("Requestid");
 
                     b.Property<string>("Type");
+
+                    b.Property<bool>("isDeleted");
 
                     b.HasKey("id");
                 });
@@ -76,6 +84,8 @@ namespace MIT.Migrations
 
                     b.Property<int?>("UserChangeid");
 
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -88,6 +98,8 @@ namespace MIT.Migrations
 
                     b.Property<string>("Method");
 
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -98,6 +110,8 @@ namespace MIT.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -107,6 +121,8 @@ namespace MIT.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
+
+                    b.Property<bool>("isDeleted");
 
                     b.HasKey("id");
                 });
@@ -121,6 +137,8 @@ namespace MIT.Migrations
                     b.Property<string>("Name");
 
                     b.Property<int>("Ratio");
+
+                    b.Property<bool>("isDeleted");
 
                     b.HasKey("id");
                 });
@@ -154,6 +172,8 @@ namespace MIT.Migrations
 
                     b.Property<int?>("Urgencyid");
 
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -166,6 +186,8 @@ namespace MIT.Migrations
 
                     b.Property<string>("Status");
 
+                    b.Property<bool>("isDeleted");
+
                     b.HasKey("id");
                 });
 
@@ -175,6 +197,8 @@ namespace MIT.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Type");
+
+                    b.Property<bool>("isDeleted");
 
                     b.HasKey("id");
                 });
@@ -196,6 +220,8 @@ namespace MIT.Migrations
 
                     b.Property<int>("SLA_TimeDone");
 
+                    b.Property<bool>("isDeleted");
+
                     b.Property<bool>("isGroup");
 
                     b.HasKey("id");
@@ -203,7 +229,8 @@ namespace MIT.Migrations
 
             modelBuilder.Entity("MIT.Models.User", b =>
                 {
-                    b.Property<int>("id");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<byte>("AccessLevel");
 
@@ -227,9 +254,13 @@ namespace MIT.Migrations
 
                     b.Property<int?>("Requestid1");
 
+                    b.Property<int?>("UserDepartametid");
+
                     b.Property<int?>("UserOrganizationid");
 
                     b.Property<int?>("UserPositionid");
+
+                    b.Property<bool>("isDeleted");
 
                     b.Property<bool>("isVIP");
 
@@ -324,6 +355,10 @@ namespace MIT.Migrations
                         .WithMany()
                         .HasForeignKey("Requestid1");
 
+                    b.HasOne("MIT.Models.Departament")
+                        .WithMany()
+                        .HasForeignKey("UserDepartametid");
+
                     b.HasOne("MIT.Models.Organization")
                         .WithMany()
                         .HasForeignKey("UserOrganizationid");
@@ -331,10 +366,6 @@ namespace MIT.Migrations
                     b.HasOne("MIT.Models.Position")
                         .WithMany()
                         .HasForeignKey("UserPositionid");
-
-                    b.HasOne("MIT.Models.Departament")
-                        .WithOne()
-                        .HasForeignKey("MIT.Models.User", "id");
                 });
         }
     }

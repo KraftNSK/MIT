@@ -5,6 +5,7 @@
   },
 
   "dependencies": {
+    "AngularJS.Core": "1.5.3",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",

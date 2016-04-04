@@ -10,5 +10,7 @@ namespace MIT.Models
         public int id { get; set; }
         public string Path { get; set; }
         public string Type { get; set; }
+
+        public bool isDeleted { get; set; }
     }
 }

@@ -36,6 +36,6 @@ namespace MIT.Models
         public string LoginAD { get; set; }
         public string OfficeNumber { get; set; }
 
-
+        public bool isDeleted { get; set; }
     }
 }

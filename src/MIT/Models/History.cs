@@ -16,6 +16,7 @@ namespace MIT.Models
         public RequestState Status { get; set; }
         public string Description { get; set; }
         public User UserChange { get; set; }
+        public bool isDeleted { get; set; }
 
     }
 }

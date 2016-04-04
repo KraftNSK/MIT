@@ -31,6 +31,7 @@ namespace MIT.Models
         /// Ответственный за сервис по умолчанию
         /// </summary>
         public User Responsible { get; set; }
+        public bool isDeleted { get; set; }
 
     }
 }

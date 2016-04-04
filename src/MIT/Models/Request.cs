@@ -75,7 +75,7 @@ namespace MIT.Models
         /// </summary>
         public List<User> Observers { get; set; }
 
-
+        public bool isDeleted { get; set; }
 
     }
 }
